@@ -1,0 +1,40 @@
+version: '1'
+services:
+  microservicio-cn-sec-backend:
+    container_name: microservicio-cn-sec-backend
+    image: ingfaraya/desarrollo-cloud-native-1-sumativa1-cn-sec-backend:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:oracle:thin:@legx51juninivtkl_medium?TNS_ADMIN=/app/oracle_wallet/
+      - spring.datasource.username=admin
+      - spring.datasource.password=Octubre$2024
+    networks:
+      - app-network
+    restart: on-failure
+
+  microservicio-bff:
+    container_name: microservicio-recetas
+    image: ingfaraya/desarrollo-cloud-native-1-sumativa1-bff:latest
+    ports:
+      - "8081:8081"
+    environment:
+      - spring.datasource.url=jdbc:oracle:thin:@legx51juninivtkl_medium?TNS_ADMIN=/app/oracle_wallet/
+      - spring.datasource.username=admin
+      - spring.datasource.password=Octubre$2024
+    networks:
+      - app-network
+    restart: on-failure
+  
+  frontend:
+    container_name: frontend
+    image: ingfaraya/desarrollo-cloud-native-1-sumativa1-frontend:latest
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    restart: on-failure
+
+networks:
+  app-network:
+    driver: bridge

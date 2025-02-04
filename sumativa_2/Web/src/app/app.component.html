@@ -1,0 +1,39 @@
+<mat-toolbar color="primary">
+  <!-- Toolbar Title -->
+  <a class="toolbar-title" routerLink="/">{{ title }}</a>
+
+  <span class="toolbar-spacer"></span>
+
+  <!-- Navigation Links -->
+  <a mat-button [routerLink]="['/patients']">View Patients</a>
+
+  <!-- Conditional Login/Logout Buttons -->
+  <ng-container *ngIf="!loginDisplay">
+    <button mat-raised-button [matMenuTriggerFor]="loginMenu" aria-label="Login">
+      Login
+    </button>
+    <mat-menu #loginMenu="matMenu">
+      <button mat-menu-item (click)="loginPopup()" aria-label="Login with Popup">
+        Login with Popup
+      </button>
+    </mat-menu>
+  </ng-container>
+
+  <ng-container *ngIf="loginDisplay">
+    <button mat-raised-button [matMenuTriggerFor]="logoutMenu" aria-label="Logout">
+      Logout
+    </button>
+    <mat-menu #logoutMenu="matMenu">
+      <button mat-menu-item (click)="logout(true)" aria-label="Logout with Popup">
+        Logout with Popup
+      </button>
+    </mat-menu>
+  </ng-container>
+</mat-toolbar>
+
+<div class="container">
+  <!-- Prevent reloading during acquireTokenSilent() due to hidden iframe -->
+  <ng-container *ngIf="!isIframe">
+    <router-outlet></router-outlet>
+  </ng-container>
+</div>

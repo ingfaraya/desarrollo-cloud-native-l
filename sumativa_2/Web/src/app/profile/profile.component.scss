@@ -1,0 +1,37 @@
+/* Container for centered content with responsive horizontal padding */
+.container {
+  margin: 20px auto;
+  max-width: 1200px;
+  padding: 0 15px; /* Added horizontal padding for better responsiveness */
+}
+
+/* Styling for the patient table */
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Table header and cell styling */
+.patient-table th,
+.patient-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+/* Table header styling with a light background and bottom border */
+.patient-table th {
+  background-color: #e9ecef;
+  font-weight: 600;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Alternate row background for readability */
+.patient-table tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+/* Hover effect for table rows to enhance interactivity */
+.patient-table tr:hover {
+  background-color: #f1f3f5;
+}

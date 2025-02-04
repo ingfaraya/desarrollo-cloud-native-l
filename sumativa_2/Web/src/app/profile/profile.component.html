@@ -1,0 +1,50 @@
+<!-- Doctor Profile Information -->
+<div class="profile-info">
+  <h2>Doctor Information</h2>
+  <p><strong>First Name:</strong> {{ profile?.name }}</p>
+  <p><strong>Email:</strong> {{ profile?.preferred_username }}</p>
+</div>
+
+<!-- Section to Call the Patient Microservice -->
+<div class="backend-call">
+  <h4>Invoke Patient Microservice</h4>
+  <!-- The button calls the existing method (llamarBackend) without changing functionality -->
+  <button (click)="callBackend()">Call Backend</button>
+  <!-- Uncomment below to show the backend response if needed -->
+  <!-- <h4>Backend Response: {{ mostrarResponseBackend() | json }}</h4> -->
+</div>
+
+<!-- Patient List Table -->
+<div class="patient-list container">
+  <h1>Patient List</h1>
+  <table class="patients-table" border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>ID Number</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Date of Birth</th>
+        <th>Address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of pacientes">
+        <td>{{ paciente.id }}</td>
+        <td>{{ paciente.nombre }}</td>
+        <td>{{ paciente.apellido }}</td>
+        <td>{{ paciente.rut }}</td>
+        <td>{{ paciente.sexo }}</td>
+        <td>{{ paciente.edad }}</td>
+        <td>{{ paciente.email }}</td>
+        <td>{{ paciente.telefono }}</td>
+        <td>{{ paciente.fechaNacimiento }}</td>
+        <td>{{ paciente.direccion }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

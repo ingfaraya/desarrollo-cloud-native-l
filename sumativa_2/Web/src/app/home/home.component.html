@@ -1,0 +1,23 @@
+<!-- Display this block when the user is not logged in -->
+<div *ngIf="!loginDisplay" class="welcome-container">
+    <p class="welcome">
+      Welcome to our Patient Management and Vital Signs Tracking System!
+    </p>
+    <p>
+      This site is currently under development, but you can already log in, log out, and manage patients.
+    </p>
+    <p>
+      Please sign in to view patient details.
+    </p>
+  </div>
+  
+  <!-- Display this block when the user is logged in -->
+  <div *ngIf="loginDisplay" class="logged-in-container">
+    <p>
+      You have successfully logged in!
+    </p>
+    <p>
+      Click on "Profile" to access your account information.
+    </p>
+  </div>
+  

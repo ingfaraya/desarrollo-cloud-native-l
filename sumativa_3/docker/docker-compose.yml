@@ -5,6 +5,46 @@ networks:
     driver: bridge
 
 services:
+
+  microservicio-productor:
+    container_name: microservicio-productor
+    image: ingfaraya/desarrollo-cloud-native-1-sumativa3-productor:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:oracle:thin:@legx51juninivtkl_medium?TNS_ADMIN=/app/oracle_wallet/
+      - spring.datasource.username=admin
+      - spring.datasource.password=Febrero$2025
+    networks:
+      - kafka_network
+    restart: on-failure
+
+  microservicio-consumidor:
+    container_name: microservicio-consumidor
+    image: ingfaraya/desarrollo-cloud-native-1-sumativa3-consumidor:latest
+    ports:
+      - "8081:8081"
+    environment:
+      - spring.datasource.url=jdbc:oracle:thin:@legx51juninivtkl_medium?TNS_ADMIN=/app/oracle_wallet/
+      - spring.datasource.username=admin
+      - spring.datasource.password=Febrero$2025
+    networks:
+      - kafka_network
+    restart: on-failure
+
+  microservicio-alertas:
+    container_name: microservicio-alertas
+    image: ingfaraya/desarrollo-cloud-native-1-sumativa3-alertas:latest
+    ports:
+      - "8082:8082"
+    environment:
+      - spring.datasource.url=jdbc:oracle:thin:@legx51juninivtkl_medium?TNS_ADMIN=/app/oracle_wallet/
+      - spring.datasource.username=admin
+      - spring.datasource.password=Febrero$2025
+    networks:
+      - kafka_network
+    restart: on-failure
+
   zookeeper-1:
     image: confluentinc/cp-zookeeper:latest
     networks:

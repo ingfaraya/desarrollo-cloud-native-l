@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2>📢 Alertas Médicas</h2>
+
+  <table class="table table-bordered mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Prioridad</th>
+        <th>Fecha</th>
+        <th>Paciente ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alert of alerts">
+        <td>{{ alert.id }}</td>
+        <td>{{ alert.description }}</td>
+        <td>{{ alert.priority }}</td>
+        <td>{{ alert.createdAt }}</td>
+        <td>{{ alert.patientId }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Paginación -->
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-primary" (click)="prevPage()" [disabled]="page === 0">⬅️ Anterior</button>
+    <button class="btn btn-primary" (click)="nextPage()" [disabled]="page >= totalPages - 1">Siguiente ➡️</button>
+  </div>
+</div>

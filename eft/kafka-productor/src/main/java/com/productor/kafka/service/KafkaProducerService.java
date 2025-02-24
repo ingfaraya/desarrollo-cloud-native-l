@@ -3,28 +3,40 @@ package com.productor.kafka.service;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.productor.kafka.model.VitalSignPayload;
+
+import java.time.LocalDateTime;
 import java.util.Random;
 
 @Service
 public class KafkaProducerService {
     private final KafkaTemplate<String, String> kafkaTemplate;
+    private final ObjectMapper objectMapper = new ObjectMapper()
+        .registerModule(new JavaTimeModule());
     private final Random random = new Random();
 
     public KafkaProducerService(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    @Scheduled(fixedRate = 10000)  // 🔥 Ejecuta cada 1 segundo
+    @Scheduled(fixedRate = 10000)
     public void sendVitalSigns() {
-        int heartRate = random.nextInt(40) + 60; // 60-100 bpm
-        double temperature = 36 + random.nextDouble(); // 36-37°C
-        int bloodPressure = 90 + random.nextInt(50); // 90-140 mmHg
+        VitalSignPayload vs = new VitalSignPayload();
+        vs.setPatientId(1L);
+        vs.setType("heartRate");
+        vs.setValue(random.nextInt(40) + 60);
+        vs.setDateTime(LocalDateTime.now());
 
-        String message = "{ \"heartRate\": " + heartRate + 
-                         ", \"temperature\": " + temperature + 
-                         ", \"bloodPressure\": " + bloodPressure + " }";
-
-        kafkaTemplate.send("senales_vitales", message);
-        System.out.println("📡 Señales vitales enviadas: " + message);
+        try {
+            // Serializar con el module JSR310
+            String message = objectMapper.writeValueAsString(vs);
+            kafkaTemplate.send("senales_vitales", message);
+            System.out.println("Enviando: " + message);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

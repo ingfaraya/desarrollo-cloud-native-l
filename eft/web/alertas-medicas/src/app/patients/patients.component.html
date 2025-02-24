@@ -1,0 +1,15 @@
+<h2>Lista de Pacientes</h2>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Nombre</th>
+    <th>Identificación</th>
+    <th>Fecha de Nacimiento</th>
+  </tr>
+  <tr *ngFor="let patient of patients">
+    <td>{{ patient.id }}</td>
+    <td>{{ patient.fullName }}</td>
+    <td>{{ patient.identification }}</td>
+    <td>{{ patient.birthDate }}</td>
+  </tr>
+</table>

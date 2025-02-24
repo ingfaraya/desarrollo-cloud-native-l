@@ -1,0 +1,44 @@
+<div class="container py-5">
+  <div class="row mb-4">
+    <div class="col text-center">
+      <h2>Panel de Control</h2>
+      <p>Bienvenido, aquí puedes gestionar tus alertas.</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Pacientes</h5>
+          <p class="card-text">Ver y administrar pacientes en el sistema.</p>
+          <button class="btn btn-primary w-100" (click)="goToPatients()">Ver Pacientes</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Alertas</h5>
+          <p class="card-text">Ver y administrar alertas médicas.</p>
+          <button class="btn btn-danger w-100" (click)="goToAlerts()">Ver Alertas</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Configuraciones</h5>
+          <p class="card-text">Configura el sistema y tus preferencias.</p>
+          <button class="btn btn-secondary w-100" (click)="goToSettings()">Ajustes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col text-center">
+      <button class="btn btn-outline-danger" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </div>
+</div>
